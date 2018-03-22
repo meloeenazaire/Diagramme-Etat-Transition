@@ -1,0 +1,23 @@
+@startuml
+[*] -> Fermée : Etat initial
+
+state Fermée{
+    state Verrouillée{
+        state Double
+        state Simple
+        Double --> Simple
+        Simple --> Double
+     }
+    state Déverrouillée
+    Fermée --> Ouvrir : Ouvrir la porte
+    Simple --> Déverrouillée : Déverrouiller à simple tour
+    Déverrouillée --> Simple : Verrouiller à simple tour
+}
+
+state Ouvrir {
+    Ouvrir --> Fermée : Fermer la porte
+}
+Ouvrir --> Franchir
+
+Franchir ->[*] : Etat final
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+[*] -> Masquée : état initial : instancier
+
+state Masquée
+
+state Affichée{
+    state Agrandie
+    state Normale{
+        state Déplacée
+        state Redimensionnée
+    }
+    
+    Agrandie --> Normale
+    Agrandie --> Réduite
+    Réduite --> Normale
+    Normale --> Réduite
+    Réduite-->Agrandie
+    Déplacée --> Redimensionnée
+    Redimensionnée --> Déplacée
+    Normale --> Agrandie
+}
+
+
+Masquée--> Affichée
+Affichée --> Masquée
+Masquée --> Détruite
+Affichée --> Détruite
+
+Détruite -> [*] : état final
+@enduml
